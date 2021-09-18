@@ -74,9 +74,9 @@ def map_pixels_to_text(image: Image.Image, invert=False):
 
 @click.command()
 @click.argument("image_path")
-@click.option("-w", "--width", default=100, help="Resized width of image, defaults to 100")
-@click.option("-c", "--char-ratio", default=2.0, help="Height/width ratio of a character, defaults to 2")
-@click.option("--invert", is_flag=True)
+@click.option("-w", "--width", default=100, help="Resized width of image, defaults to 100.")
+@click.option("-c", "--char-ratio", default=2.0, help="Height/width ratio of a character, defaults to 2.")
+@click.option("--invert", is_flag=True, help="Inverses the contrast.")
 def main(image_path, width, char_ratio, invert):
     abs_path = Path(image_path).resolve()
     im_name = abs_path.stem
