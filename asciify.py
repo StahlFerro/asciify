@@ -5,6 +5,7 @@ from PIL import Image
 from typing import Union, List, Generator
 from pathlib import Path
 
+
 ASCII_CHARS = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", ".", " "]
 
 
@@ -49,6 +50,7 @@ def format_ascii_img(char_array: Union[List, Generator], width: int):
             text_list.append(c)
         px_num += 1
     return "".join(text_list)
+
 
 def map_pixels_to_text(image: Image.Image, invert=False):
     """Map each pixels of an image into ascii characters based on ASCII_CHARS
