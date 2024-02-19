@@ -76,16 +76,21 @@ def map_pixels_to_text(image: Image.Image, invert=False):
 @click.argument("image_path")
 @click.option("-w", "--width", default=100, help="Resized width of image, defaults to 100.")
 @click.option("-c", "--char-ratio", default=2.0, help="Height/width ratio of a character, defaults to 2.")
+@click.option("-o", "--output", help="Output file name")
 @click.option("--invert", is_flag=True, help="Inverses the contrast.")
-def main(image_path, width, char_ratio, invert):
+def main(image_path, width, char_ratio, output, invert):
     abs_path = Path(image_path).resolve()
     im_name = abs_path.stem
+    out_path = f"./images/renders/{im_name}.txt"
+    if output:
+        out_path = output
     im = Image.open(abs_path)
     im = grayscaler(resize_image(im, width_new=width, char_ratio=char_ratio))
     text = map_pixels_to_text(im, invert)
-    with open(f"./images/renders/{im_name}.txt", "w") as f:
+    print(f"Text length: {len(text)}")
+    with open(out_path, "w") as f:
         f.write(text)
-
+        
 
 if __name__ == "__main__":
     main()
